@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, Events } from 'ionic-angular';
 import { GlobalVars } from "../../providers/global-vars";
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { MyProfilePage } from '../my-profile/my-profile';
 
 @IonicPage()
 @Component({
@@ -17,10 +18,11 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    console.log(this.email);
   }
 
   login(){
+    console.log(this.email);
     let loading = this.loadingCtrl.create({
       content: 'Aguarde...'
     });
@@ -28,23 +30,31 @@ export class LoginPage {
     var headers = new Headers();
     headers.append("Accept", 'application/json');
     headers.append('Content-Type', 'application/json' );
+    headers.append("Access-Control-Allow-Origin", '*');
+    headers.append("Access-Control-Allow-Headers", 'Content-Type');
     let options = new RequestOptions({ headers: headers });
 
     loading.present();
     
 
-    this.http.post(this.globalVars.apiUrl + '/login', {
+    this.http.post('/api/login', {
       email: this.email,
-      password: this.password,
-      'form-data': 'form-data'
+      password: this.password
     }, options).subscribe(data => {
+      
 
       if(data.status = 302){
+        const response = (data as any);
+        const object = JSON.parse(response._body);
+        //console.log(object.data.token);
         //window.localStorage.setItem("NOME_CLIENTE", data.dados.Nome);
-        console.log(data);
+        window.localStorage.setItem("token", object.data.token);
+        this.navCtrl.setRoot(MyProfilePage);
       } else {
         console.log(data);
       }
+
+      loading.dismiss();
 
     });
   }
