@@ -16,6 +16,8 @@ import { NativeStorage } from '@ionic-native/native-storage';
 })
 export class MyProfilePage {
 
+  token:string;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -24,9 +26,12 @@ export class MyProfilePage {
 
   ionViewDidLoad() {
     this.nativeStorage.getItem('token_access')
-    .then(
-      data => console.log(data),
-      error => console.error(error)
+      .then(data => {
+        console.log(data)
+        this.token = data
+      },
+      error => console.error(error),
+      
     );
   }
 

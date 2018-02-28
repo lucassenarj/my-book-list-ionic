@@ -9,7 +9,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { MyProfilePage } from '../pages/my-profile/my-profile';
-import { HttpModule } from '@angular/http/';
+import { HttpModule, Http } from '@angular/http';
+import { ExtendedHttpService } from '../providers/extended-http.service';
 
 import { NativeStorage } from '@ionic-native/native-storage';
 
@@ -36,6 +37,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: Http, useClass: ExtendedHttpService},
     GlobalVars,
     NativeStorage
   ]
