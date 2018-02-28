@@ -11,6 +11,8 @@ import { LoginPage } from '../pages/login/login';
 import { MyProfilePage } from '../pages/my-profile/my-profile';
 import { HttpModule } from '@angular/http/';
 
+import { NativeStorage } from '@ionic-native/native-storage';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -34,7 +36,8 @@ import { HttpModule } from '@angular/http/';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    GlobalVars
+    GlobalVars,
+    NativeStorage
   ]
 })
 export class AppModule {}
