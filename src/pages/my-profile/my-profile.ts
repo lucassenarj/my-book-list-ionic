@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { ProfileService } from '../../providers/profile.service';
 
 /**
  * Generated class for the MyProfilePage page.
@@ -16,23 +17,25 @@ import { NativeStorage } from '@ionic-native/native-storage';
 })
 export class MyProfilePage {
 
-  token:string;
+  user:string;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private nativeStorage: NativeStorage) {
+    private nativeStorage: NativeStorage,
+    private profile: ProfileService) {
   }
 
   ionViewDidLoad() {
-    this.nativeStorage.getItem('token_access')
-      .then(data => {
-        console.log(data)
-        this.token = data
-      },
-      error => console.error(error),
-      
-    );
+    this.profile.getProfile().subscribe(
+      data => {
+        const response = (data as any);
+        const object = JSON.parse(response._body);
+
+        this.user = object;
+      }
+    )
+    
   }
 
 }

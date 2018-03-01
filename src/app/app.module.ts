@@ -11,6 +11,7 @@ import { LoginPage } from '../pages/login/login';
 import { MyProfilePage } from '../pages/my-profile/my-profile';
 import { HttpModule, Http } from '@angular/http';
 import { ExtendedHttpService } from '../providers/extended-http.service';
+import { ProfileService } from '../providers/profile.service'
 
 import { NativeStorage } from '@ionic-native/native-storage';
 
@@ -39,7 +40,8 @@ import { NativeStorage } from '@ionic-native/native-storage';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: Http, useClass: ExtendedHttpService},
     GlobalVars,
-    NativeStorage
+    NativeStorage,
+    ProfileService
   ]
 })
 export class AppModule {}
