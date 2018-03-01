@@ -14,13 +14,16 @@ import { ExtendedHttpService } from '../providers/extended-http.service';
 import { ProfileService } from '../providers/profile.service'
 
 import { NativeStorage } from '@ionic-native/native-storage';
+import { PopularMoviesComponent } from '../components/popular-movies/popular-movies';
+import { MoviesService } from '../providers/movies.service';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LoginPage,
-    MyProfilePage
+    MyProfilePage,
+    PopularMoviesComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { NativeStorage } from '@ionic-native/native-storage';
     {provide: Http, useClass: ExtendedHttpService},
     GlobalVars,
     NativeStorage,
-    ProfileService
+    ProfileService,
+    MoviesService
   ]
 })
 export class AppModule {}
