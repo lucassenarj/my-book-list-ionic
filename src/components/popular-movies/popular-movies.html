@@ -1,0 +1,26 @@
+<!-- <ion-slides spaceBetween="40" slidesPerView="2"> !-->
+<ion-slides>
+  <ion-slide *ngFor="let movie of listMovies">
+    <ion-card>
+
+      <ion-card-content>
+        <ion-card-title>
+          {{ movie.original_title }}
+        </ion-card-title>
+
+        <img [src]="'https://image.tmdb.org/t/p/w300/' + movie.backdrop_path">
+        
+        <p>
+          {{ movie.overview }}
+        </p>
+      </ion-card-content>
+
+      <ion-item right>
+        <ion-icon name='star' item-start style="color: #e2b34e"></ion-icon>
+        Rating
+        <ion-badge>{{movie.vote_average}}/10</ion-badge>
+      </ion-item>
+
+    </ion-card>
+  </ion-slide>
+</ion-slides>
