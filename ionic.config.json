@@ -7,8 +7,20 @@
   },
   "proxies": [
     {
-      "path": "/api",
-      "proxyUrl": "https://my-book-list-laravel.herokuapp.com/api/v1"
+      "path": "/api/",
+      "proxyUrl": "https://my-book-list-laravel.herokuapp.com/api/v1/"
+    },
+    {
+      "path": "/socket.io/",
+      "proxyUrl": "https://my-book-list-laravel.herokuapp.com/api/v1/"
+    },
+    {
+      "path": "/3000/socket.io/",
+      "proxyUrl": "https://my-book-list-laravel.herokuapp.com/api/v1/"
+    },
+    {
+      "path": "/80/socket.io/",
+      "proxyUrl": "https://my-book-list-laravel.herokuapp.com/api/v1/"
     }
   ]
 }
