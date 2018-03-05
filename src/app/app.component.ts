@@ -6,6 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { MyProfilePage } from '../pages/my-profile/my-profile';
+import { DatabaseProvider } from '../providers/database.provider';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -16,7 +18,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public events: Events) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public events: Events, private db: DatabaseProvider) {
     
     // Menu
     this.pages = [
@@ -28,7 +30,12 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
-      splashScreen.hide();
+
+      this.db.createDatabase().then(()=>{
+        splashScreen.hide();
+      }).catch(() => {
+        splashScreen.hide();
+      });
     });
   }
 

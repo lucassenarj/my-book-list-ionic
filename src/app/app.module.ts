@@ -19,6 +19,9 @@ import { MoviesService } from '../providers/movies.service';
 import { MyLibraryComponent } from '../components/my-library/my-library';
 import { BookDetailsPage } from '../pages/book-details/book-details';
 import { IonicStorageModule } from '@ionic/storage';
+import { DatabaseProvider } from '../providers/database.provider';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { MyLibraryProvider } from '../providers/my-library.provider';
 
 
 @NgModule({
@@ -56,7 +59,10 @@ import { IonicStorageModule } from '@ionic/storage';
     GlobalVars,
     NativeStorage,
     ProfileService,
-    MoviesService
+    MoviesService,
+    DatabaseProvider,
+    SQLite,
+    MyLibraryProvider
   ]
 })
 export class AppModule {}
