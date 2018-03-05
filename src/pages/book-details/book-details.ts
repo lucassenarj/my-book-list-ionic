@@ -44,16 +44,15 @@ export class BookDetailsPage {
     });
   
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
+      //console.log('Dismissed toast');
     });
   
     toast.present();
   }
 
   addBookMyLibrary(book){
-    console.log('Book: ' + book);
     this.myLibrary.insert(book).then(()=>{
-      console.log('Book add!');
+      this.presentToast('Book added!');
     }).catch((error) => {
       console.log(error);
     })

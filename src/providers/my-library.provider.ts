@@ -16,11 +16,7 @@ export class MyLibraryProvider {
       let sql = 'insert into books (bookId, title, description, author, thumbnail, category_id) values (?, ?, ?, ?, ?, ?)';
       let data = [book.bookId, book.title, book.description, book.authors, book.imageLinks.small, 1];
 
-      return db.executeSql(sql, data).then(()=>{
-        console.log('SQL: ' + sql);
-        console.log('Data: ' + data);
-        console.log('Book Add!')
-      })
+      return db.executeSql(sql, data)
       .catch((error) => {
         console.error(error)
       });
