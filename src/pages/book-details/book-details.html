@@ -1,18 +1,18 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title *ngIf="book">{{ book.title }}</ion-title>
+    <ion-title *ngIf="book">{{ book.volumeInfo.title }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
   <ion-card *ngIf="book">
     <ion-item>
-      <h2>{{ book.title }}</h2>
-      <p>{{ book.authors }}</p>
+      <h2>{{ book.volumeInfo.title }}</h2>
+      <p>{{ book.volumeInfo.authors }}</p>
       
     </ion-item>
     <ion-fab right edge>
@@ -27,14 +27,11 @@
         !-->
       </ion-fab>
 
-    <img [src]="book.imageLinks.small"/>
+    <img [src]="book.volumeInfo.imageLinks.small"/>
 
     <ion-card-content>
-      <ion-card-title>
-        
-      </ion-card-title>
 
-      <p [innerHTML]="book.description" class="text-content"></p>
+      <p [innerHTML]="book.volumeInfo.description" class="text-content"></p>
       
     </ion-card-content>
   </ion-card>

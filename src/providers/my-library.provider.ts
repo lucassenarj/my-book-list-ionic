@@ -13,9 +13,10 @@ export class MyLibraryProvider {
   
   public insert(book: Book) {
     return this.database.getDatabase().then((db: SQLiteObject) => {
+      console.log('dasdas');
       let sql = 'insert into books (bookId, title, description, author, thumbnail, category_id) values (?, ?, ?, ?, ?, ?)';
-      let data = [book.bookId, book.title, book.description, book.authors, book.imageLinks.small, 1];
-
+      let data = [book.id, book.volumeInfo.title, book.volumeInfo.description, book.volumeInfo.authors, book.volumeInfo.imageLinks.small, 1];
+      console.log(book.id);
       return db.executeSql(sql, data)
       .catch((error) => {
         console.error(error)
@@ -52,11 +53,13 @@ export class MyLibraryProvider {
 export class Book {
   id: number;
   bookId: string;
-  title: string;
-  description: string;
-  authors: string;
-  imageLinks: {
-    small: string,
-  };
-  category_id: number;
+  volumeInfo: {
+    title: string;
+    description: string;
+    authors: string;
+    imageLinks: {
+      small: string,
+    };
+    category_id: number;
+  }
 }

@@ -1,7 +1,9 @@
+<h3 *ngIf="listBooks">My Library</h3>
+
 <ion-slides slidesPerView="3">
   <ion-slide *ngFor="let book of listBooks">
-    <ion-item (click)="bookDetails(book.id)">
-      <img [src]="book.volumeInfo.imageLinks.thumbnail">
+    <ion-item (click)="bookDetails(book.bookId)">
+      <img [src]="book.thumbnail">
     </ion-item>
   </ion-slide>
 </ion-slides>

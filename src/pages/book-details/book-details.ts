@@ -30,7 +30,7 @@ export class BookDetailsPage {
     this.books.getBookDetails(this.bookId).subscribe(data=>{
       let response = (data as any)._body;
       let object = JSON.parse(response);
-      this.book = object.volumeInfo;
+      this.book = object;
     }, error=>{
       console.log(error);
     })

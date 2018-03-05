@@ -19,7 +19,6 @@ export class LoginPage {
 
   email: string;
   password: string;
-  listBooks;
 
   constructor(
     public navCtrl: NavController, 
@@ -33,8 +32,7 @@ export class LoginPage {
     public myLibrary: MyLibraryProvider) {
   }
 
-  ionViewDidLoad() {
-    this.getAllBooks();    
+  ionViewDidLoad() {   
   }
 
   login(){
@@ -78,13 +76,4 @@ export class LoginPage {
 
     });
   }
-
-  getAllBooks(){
-    this.myLibrary.getAll()
-    .then((result: any[]) => {
-      this.listBooks = result;
-      console.log(this.listBooks);
-    });
-  }
-
 }

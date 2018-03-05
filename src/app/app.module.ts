@@ -17,6 +17,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { PopularMoviesComponent } from '../components/popular-movies/popular-movies';
 import { MoviesService } from '../providers/movies.service';
 import { MyLibraryComponent } from '../components/my-library/my-library';
+import { PopularBooksComponent } from '../components/popular-books/popular-books';
 import { BookDetailsPage } from '../pages/book-details/book-details';
 import { IonicStorageModule } from '@ionic/storage';
 import { DatabaseProvider } from '../providers/database.provider';
@@ -32,7 +33,8 @@ import { MyLibraryProvider } from '../providers/my-library.provider';
     MyProfilePage,
     PopularMoviesComponent,
     MyLibraryComponent,
-    BookDetailsPage
+    BookDetailsPage,
+    PopularBooksComponent
   ],
   imports: [
     BrowserModule,
