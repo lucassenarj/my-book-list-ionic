@@ -1,0 +1,13 @@
+<ion-slides slidesPerView="3">
+  <ion-slide *ngFor="let book of listBooks">
+    <ion-item (click)="bookDetails(book.id)">
+      <img [src]="book.volumeInfo.imageLinks.thumbnail">
+    </ion-item>
+  </ion-slide>
+</ion-slides>
+
+<!--
+  <ion-card-title>
+            {{ movie.original_title }}
+          </ion-card-title>
+          !-->

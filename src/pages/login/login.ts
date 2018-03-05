@@ -1,18 +1,25 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Events, ToastController } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { MyProfilePage } from '../my-profile/my-profile';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { DatabaseProvider } from '../../providers/database.provider';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { MyLibraryProvider } from '../../providers/my-library.provider';
 
 @IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
+  providers: [
+    SQLite
+  ]
 })
 export class LoginPage {
 
   email: string;
   password: string;
+  listBooks;
 
   constructor(
     public navCtrl: NavController, 
@@ -20,11 +27,14 @@ export class LoginPage {
     public loadingCtrl: LoadingController, 
     public http: Http, 
     public events: Events,
-    private nativeStorage: NativeStorage) {
+    private nativeStorage: NativeStorage, 
+    private database: DatabaseProvider,
+    private toast: ToastController,
+    public myLibrary: MyLibraryProvider) {
   }
 
   ionViewDidLoad() {
-
+    this.getAllBooks();    
   }
 
   login(){
@@ -58,7 +68,7 @@ export class LoginPage {
         );
         //console.log(object.data.token);
         //window.localStorage.setItem("NOME_CLIENTE", data.dados.Nome);
-        window.localStorage.setItem("token", object.data.token);
+        //window.localStorage.setItem("token", object.data.token);
         this.navCtrl.setRoot(MyProfilePage);
       } else {
         console.log(data);
@@ -66,6 +76,14 @@ export class LoginPage {
 
       loading.dismiss();
 
+    });
+  }
+
+  getAllBooks(){
+    this.myLibrary.getAll()
+    .then((result: any[]) => {
+      this.listBooks = result;
+      console.log(this.listBooks);
     });
   }
 
