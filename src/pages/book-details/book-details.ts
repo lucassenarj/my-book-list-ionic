@@ -6,6 +6,7 @@ import { SQLiteObject } from '@ionic-native/sqlite';
 import { DatabaseProvider } from '../../providers/database.provider';
 import { ToastController } from 'ionic-angular';
 import { MyLibraryProvider } from '../../providers/my-library.provider';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -53,6 +54,7 @@ export class BookDetailsPage {
   addBookMyLibrary(book){
     this.myLibrary.insert(book).then(()=>{
       this.presentToast('Book added!');
+      this.navCtrl.setRoot(HomePage);
     }).catch((error) => {
       console.log(error);
     })

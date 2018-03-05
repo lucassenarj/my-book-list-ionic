@@ -43,9 +43,12 @@ export class DatabaseProvider {
 
         // create tables
         db.sqlBatch([
-          ['insert into categories (name) values (?)', ['Read']],
-          ['insert into categories (name) values (?)', ['Not Read']],
-          ['insert into categories (name) values (?)', ['Favorite']]
+          ['insert into categories (name) values (?)', ['Favorites']],
+          ['insert into categories (name) values (?)', ['Purchased']],
+          ['insert into categories (name) values (?)', ['To Read']],
+          ['insert into categories (name) values (?)', ['Reading Now']],
+          ['insert into categories (name) values (?)', ['Have Read']],
+          ['insert into categories (name) values (?)', ['Reviewed']]
         ])
           .then(() => console.log('Default categories inserted'))
           .catch(error => console.error('Error while try to include default categories', error));

@@ -2,6 +2,10 @@
 
   <ion-navbar color="primary">
     <ion-title *ngIf="book">{{ book.volumeInfo.title }}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addBookMyLibrary(book)"><ion-icon name="add"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -13,20 +17,20 @@
     <ion-item>
       <h2>{{ book.volumeInfo.title }}</h2>
       <p>{{ book.volumeInfo.authors }}</p>
-      
     </ion-item>
+    <!--
     <ion-fab right edge>
-        <button ion-fab mini (click)="addBookMyLibrary(book)"><ion-icon name="add"></ion-icon></button>
-        <!--
-        <ion-fab-list>
-          <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
-          <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
-          <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
-          <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
-        </ion-fab-list>
-        !-->
-      </ion-fab>
-
+      <button ion-fab mini (click)="addBookMyLibrary(book)"><ion-icon name="add"></ion-icon></button>
+      
+      <ion-fab-list>
+        <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+        <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+        <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
+        <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+      </ion-fab-list>
+      
+    </ion-fab>
+    !-->
     <img [src]="book.volumeInfo.imageLinks.small"/>
 
     <ion-card-content>
