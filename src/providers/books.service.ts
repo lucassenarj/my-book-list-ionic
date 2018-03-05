@@ -10,7 +10,7 @@ export class BooksService {
   private baseApiPath = "https://www.googleapis.com/books/v1/";
 
   private getApiKey(): string {
-    return "&key={key}";
+    return "&key=AIzaSyCYL3f7_BIqzzfWMqmB71I_DXKWPLeCNUc";
   }
 
   constructor(private http: Http) {

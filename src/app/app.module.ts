@@ -18,6 +18,8 @@ import { PopularMoviesComponent } from '../components/popular-movies/popular-mov
 import { MoviesService } from '../providers/movies.service';
 import { MyLibraryComponent } from '../components/my-library/my-library';
 import { BookDetailsPage } from '../pages/book-details/book-details';
+import { IonicStorageModule } from '@ionic/storage';
+
 
 @NgModule({
   declarations: [
@@ -32,14 +34,19 @@ import { BookDetailsPage } from '../pages/book-details/book-details';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+      driverOrder: ['indexeddb', 'sqlite', 'websql']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     LoginPage,
-    MyProfilePage
+    MyProfilePage,
+    BookDetailsPage
   ],
   providers: [
     StatusBar,

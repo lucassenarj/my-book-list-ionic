@@ -58,7 +58,7 @@ export class LoginPage {
         );
         //console.log(object.data.token);
         //window.localStorage.setItem("NOME_CLIENTE", data.dados.Nome);
-        window.localStorage.setItem("token", object.data.token);
+        //window.localStorage.setItem("token", object.data.token);
         this.navCtrl.setRoot(MyProfilePage);
       } else {
         console.log(data);

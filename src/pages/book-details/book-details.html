@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title *ngIf="book">{{ book.title }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-card *ngIf="book">
+    <ion-item>
+      <h2>{{ book.title }}</h2>
+      <p>{{ book.authors }}</p>
+      
+    </ion-item>
+    <ion-fab right edge>
+        <button ion-fab mini><ion-icon name="add"></ion-icon></button>
+        <!--
+        <ion-fab-list>
+          <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+          <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+          <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
+          <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+        </ion-fab-list>
+        !-->
+      </ion-fab>
+
+    <img [src]="book.imageLinks.small"/>
+
+    <ion-card-content>
+      <ion-card-title>
+        
+      </ion-card-title>
+
+      <p [innerHTML]="book.description" class="text-content"></p>
+      
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { BooksService } from '../../providers/books.service';
-import { Slides } from 'ionic-angular';
+import { Slides, NavController } from 'ionic-angular';
+import { BookDetailsPage } from '../../pages/book-details/book-details';
 
 @Component({
   selector: 'my-library',
@@ -14,7 +15,7 @@ export class MyLibraryComponent {
 
   listBooks = new Array<any>();
 
-  constructor(private books: BooksService) {
+  constructor(private books: BooksService, private navCtrl: NavController) {
     this.books.getBooks()
       .subscribe(data=>{
         const response = (data as any);
@@ -29,11 +30,12 @@ export class MyLibraryComponent {
   gotoNextSlide() {
     this.slides.slideNext();
   }
-  
+
   gotoPrevSlide() {
     this.slides.slidePrev();
   }
 
-
-
+  bookDetails(bookId){
+    this.navCtrl.push(BookDetailsPage, {id: bookId});
+  }
 }
