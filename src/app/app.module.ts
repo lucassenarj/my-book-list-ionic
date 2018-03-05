@@ -16,6 +16,8 @@ import { ProfileService } from '../providers/profile.service'
 import { NativeStorage } from '@ionic-native/native-storage';
 import { PopularMoviesComponent } from '../components/popular-movies/popular-movies';
 import { MoviesService } from '../providers/movies.service';
+import { MyLibraryComponent } from '../components/my-library/my-library';
+import { BookDetailsPage } from '../pages/book-details/book-details';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { MoviesService } from '../providers/movies.service';
     HomePage,
     LoginPage,
     MyProfilePage,
-    PopularMoviesComponent
+    PopularMoviesComponent,
+    MyLibraryComponent,
+    BookDetailsPage
   ],
   imports: [
     BrowserModule,
