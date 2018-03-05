@@ -2,27 +2,28 @@ import { Component, ViewChild } from '@angular/core';
 import { BooksService } from '../../providers/books.service';
 import { Slides, NavController } from 'ionic-angular';
 import { BookDetailsPage } from '../../pages/book-details/book-details';
-import { MyLibraryProvider } from '../../providers/my-library.provider';
 
 @Component({
-  selector: 'my-library',
-  templateUrl: 'my-library.html',
+  selector: 'popular-books',
+  templateUrl: 'popular-books.html',
   providers: [
-    BooksService,
-    MyLibraryProvider
+    BooksService
   ]
 })
-export class MyLibraryComponent {
+export class PopularBooksComponent {
   @ViewChild(Slides) slides: Slides;
 
   listBooks = new Array<any>();
 
-  constructor(private books: BooksService, private navCtrl: NavController, private myLibrary: MyLibraryProvider) {
-    this.myLibrary.getAll()
-    .then((result: any[]) => {
-      this.listBooks = result;
-      console.log(this.listBooks);
-    });
+  constructor(private books: BooksService, private navCtrl: NavController) {
+    this.books.getBooks()
+      .subscribe(data=>{
+        const response = (data as any);
+        const object_return = JSON.parse(response._body);
+        this.listBooks = object_return.items;
+      }, error=>{
+        console.log(error);
+      })
     
   }
 
