@@ -19,6 +19,7 @@ import { MoviesService } from '../providers/movies.service';
 import { MyLibraryComponent } from '../components/my-library/my-library';
 import { PopularBooksComponent } from '../components/popular-books/popular-books';
 import { BookDetailsPage } from '../pages/book-details/book-details';
+import { BookDetailsOfflinePage } from '../pages/book-details-offline/book-details-offline';
 import { IonicStorageModule } from '@ionic/storage';
 import { DatabaseProvider } from '../providers/database.provider';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
@@ -34,7 +35,8 @@ import { MyLibraryProvider } from '../providers/my-library.provider';
     PopularMoviesComponent,
     MyLibraryComponent,
     BookDetailsPage,
-    PopularBooksComponent
+    PopularBooksComponent,
+    BookDetailsOfflinePage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { MyLibraryProvider } from '../providers/my-library.provider';
     HomePage,
     LoginPage,
     MyProfilePage,
-    BookDetailsPage
+    BookDetailsPage,
+    BookDetailsOfflinePage
   ],
   providers: [
     StatusBar,

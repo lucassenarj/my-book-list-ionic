@@ -2,21 +2,26 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { DatabaseProvider } from './database.provider';
+import { GlobalVars } from './global-vars';
 
 @Injectable()
 
 export class MyLibraryProvider {
 
-  constructor(private database: DatabaseProvider) {
+  base64Image;
+
+  constructor(private database: DatabaseProvider, private globalVars: GlobalVars) {
     
   }
   
   public insert(book: Book) {
+    this.globalVars.getBase64ImageFromURL(book.volumeInfo.imageLinks.small).subscribe(base64data => {
+      this.base64Image = 'data:image/jpg;base64,' + base64data;
+    });
+
     return this.database.getDatabase().then((db: SQLiteObject) => {
-      console.log('dasdas');
       let sql = 'insert into books (bookId, title, description, author, thumbnail, category_id) values (?, ?, ?, ?, ?, ?)';
-      let data = [book.id, book.volumeInfo.title, book.volumeInfo.description, book.volumeInfo.authors, book.volumeInfo.imageLinks.small, 1];
-      console.log(book.id);
+      let data = [book.id, book.volumeInfo.title, book.volumeInfo.description, book.volumeInfo.authors, this.base64Image, 1];
       return db.executeSql(sql, data)
       .catch((error) => {
         console.error(error)
@@ -42,6 +47,27 @@ export class MyLibraryProvider {
             } else {
               return [];
             }
+          })
+          .catch((e) => console.error(e));
+      })
+      .catch((e) => console.error(e));
+  }
+
+  public getBookOffline(id) {
+    console.log('Book id in getBookOffline:'+ id);
+    return this.database.getDatabase()
+      .then((db: SQLiteObject) => {
+        let sql = 'SELECT * FROM books WHERE id = ?';
+        let data = [id];
+
+        return db.executeSql(sql, data)
+          .then((data: any) => {
+            if (data.rows.length > 0) {
+              let item = data.rows.item(0);
+              return item;
+            }
+ 
+            return null;
           })
           .catch((e) => console.error(e));
       })

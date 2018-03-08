@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { BooksService } from '../../providers/books.service';
 import { Slides, NavController } from 'ionic-angular';
 import { BookDetailsPage } from '../../pages/book-details/book-details';
+import { BookDetailsOfflinePage } from '../../pages/book-details-offline/book-details-offline';
 import { MyLibraryProvider } from '../../providers/my-library.provider';
 
 @Component({
@@ -21,7 +22,7 @@ export class MyLibraryComponent {
     this.myLibrary.getAll()
     .then((result: any[]) => {
       this.listBooks = result;
-      console.log(this.listBooks);
+      //console.log(this.listBooks);
     });
     
   }
@@ -34,7 +35,7 @@ export class MyLibraryComponent {
     this.slides.slidePrev();
   }
 
-  bookDetails(bookId){
-    this.navCtrl.push(BookDetailsPage, {id: bookId});
+  bookDetails(id){
+    this.navCtrl.push(BookDetailsOfflinePage, {id: id});
   }
 }
